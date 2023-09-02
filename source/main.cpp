@@ -50,9 +50,10 @@ while(true) {
         
         signal_t features_signal;
         features_signal.total_length = sizeof(samples[sampleIdx]) / sizeof(samples[0][0]);
-        features_signal.get_data = [sampleIdx](size_t offset, size_t length, float *out_ptr) {
+        features_signal.get_data = [sampleIdx](size_t offset, size_t length, float *out_ptr) -> int {
             return raw_feature_get_data(sampleIdx, offset, length, out_ptr);
         };
+
         
         ei_printf("Edge Impulse standalone inferencing (Raspberry Pico 2040)\n");
         ei_printf("Processing sample index: %zu\n", sampleIdx);
