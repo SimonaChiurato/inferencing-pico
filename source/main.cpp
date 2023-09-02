@@ -76,8 +76,9 @@ while(true) {
 
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label, result.classification[ix].value);
-            ei_printf(" (True result: %.1f)", true_results[ix]);
+            
         }
+        ei_printf(" (True result: %.1f)", true_results[ix]);
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
 #endif
