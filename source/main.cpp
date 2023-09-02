@@ -40,7 +40,7 @@ int main() {
     sleep_ms(250);
     gpio_put(LED_PIN, 0);
     sleep_ms(250);
-
+while(true) {
     for (size_t sampleIdx = 0; sampleIdx < sizeof(samples) / sizeof(samples[0]); sampleIdx++) {
         
         if (sizeof(samples[sampleIdx]) / sizeof(float) != EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE) {
@@ -57,7 +57,7 @@ int main() {
         features_signal.get_data = [sampleIdx](size_t offset, size_t length, float *out_ptr) {
             return raw_feature_get_data(sampleIdx, offset, length, out_ptr);
         };
-
+        
         ei_printf("Edge Impulse standalone inferencing (Raspberry Pico 2040)\n");
         gpio_put(LED_PIN, 0);
         EI_IMPULSE_ERROR res = run_classifier(&features_signal, &result, false /* debug */);
@@ -80,7 +80,7 @@ int main() {
 
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label, result.classification[ix].value);
-             //ei_printf(" (true result: %.1f, %.1f)", true_results[ix][0], true_results[ix][1]);
+            ei_printf(" (true result: %.1f, %.1f)", true_results[ix][0], true_results[ix][1]);
         }
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
@@ -88,6 +88,7 @@ int main() {
         gpio_put(LED_PIN, 1);
         sleep_ms(1000);
     }
+}
 
     return 0;
 }
