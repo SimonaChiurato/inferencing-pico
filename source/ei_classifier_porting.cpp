@@ -38,13 +38,6 @@ EI_WEAK_FN EI_IMPULSE_ERROR ei_sleep(int32_t time_ms) {
     return EI_IMPULSE_OK;
 }
 
-uint64_t ei_read_timer_ms() {
-    return to_ms_since_boot(get_absolute_time());
-}
-
-uint64_t ei_read_timer_us() {
-    return to_us_since_boot(get_absolute_time());
-}
 
 /**
  *  Printf function uses vsnprintf and output using Arduino Serial
