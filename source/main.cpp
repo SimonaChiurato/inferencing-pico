@@ -36,6 +36,7 @@ int main() {
     gpio_put(LED_PIN, 0);
     sleep_ms(250);
 while(true) {
+    int correct_predictions = 0; 
     for (size_t sampleIdx = 0; sampleIdx < sizeof(samples) / sizeof(samples[0]); sampleIdx++) {
         
         if (sizeof(samples[sampleIdx]) / sizeof(float) != EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE) {
@@ -79,12 +80,19 @@ while(true) {
             
         }
         ei_printf(" (True result: %.1f)", true_results[ix]);
+        if (result.classification[ix].value > 0.5 && true_results[sampleIdx] == ix) { 
+        correct_predictions++; 
+    }
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
 #endif
         gpio_put(LED_PIN, 1);
         sleep_ms(1000);
     }
+    float accuracy = (float)correct_predictions / (sizeof(true_results) / sizeof(true_results[0])) * 100.0f;
+
+// Print accuracy
+    ei_printf("Accuracy: %.2f%%\n", accuracy);
 }
 
     return 0;
