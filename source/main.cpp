@@ -82,8 +82,9 @@ while(true) {
                 correct_predictions++; 
             }
         }
-        ei_printf(" (True result: %.1f)", true_results[ix]);
-        
+        for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
+            ei_printf(" (True result: %.1f)", true_results[ix]);
+        }
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
 #endif
