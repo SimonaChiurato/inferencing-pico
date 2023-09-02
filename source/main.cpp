@@ -75,7 +75,7 @@ int main()
         ei_printf("[");
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("%.5f", result.classification[ix].value);
-            #ei_printf(" (true result: %.1f, %.1f)", true_results[ix][0], true_results[ix][1]);
+            //ei_printf(" (true result: %.1f, %.1f)", true_results[ix][0], true_results[ix][1]);
     #if EI_CLASSIFIER_HAS_ANOMALY == 1
             ei_printf(", ");
     #else
