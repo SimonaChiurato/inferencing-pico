@@ -64,7 +64,7 @@ while(true) {
         if (res != 0) return res;
 
         ei_printf("Predictions ");
-        ei_printf("(DSP: %d ms., Classification: %d ms., Anomaly: %d ms.)",
+        ei_printf("(DSP: %d ms., Classification latency: %d ms., Anomaly: %d ms.)",
             result.timing.dsp, result.timing.classification, result.timing.anomaly);
         ei_printf(": \n");
         ei_printf("[");
