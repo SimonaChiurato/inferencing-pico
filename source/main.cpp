@@ -78,22 +78,18 @@ while(true) {
 
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label, result.classification[ix].value);
-            if (result.classification[ix].value > 0.5 && true_results[sampleIdx] == ix) { 
-                correct_predictions++; 
-            }
+            
         }
         
         ei_printf(" (True result: %.1f)", true_results[sampleIdx]);
-        float accuracy = (float)correct_predictions / (sizeof(true_results) / sizeof(true_results[0])) * 100.0f;
-        ei_printf("Accuracy: %.2f%%\n", accuracy);
+        
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
 #endif
         gpio_put(LED_PIN, 1);
         sleep_ms(1000);
     }
-    float accuracy = (float)correct_predictions / (sizeof(true_results) / sizeof(true_results[0])) * 100.0f;
-    ei_printf("Accuracy: %.2f%%\n", accuracy);
+    
 }
 
     return 0;
